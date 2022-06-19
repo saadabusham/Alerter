@@ -1,0 +1,4 @@
+<resources>
+    <string name="alert_dialog_title">Alert</string>
+    <string name="alert_failed">Operation Failed</string>
+</resources>
