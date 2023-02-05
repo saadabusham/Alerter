@@ -10,9 +10,14 @@
     </style>
 
     <!-- Dialog Animation Style -->
-    <style name="DialogAnimations">
+    <style name="DialogAnimationsBottomToTop">
         <item name="android:windowEnterAnimation">@anim/slide_up_animation</item>
         <item name="android:windowExitAnimation">@anim/slide_down_animation</item>
+    </style>
+
+    <style name="DialogAnimationsTopToBottom">
+        <item name="android:windowEnterAnimation">@anim/slide_down_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_up_animation</item>
     </style>
 
 </resources>

@@ -17,7 +17,9 @@ class AlerterPopup(
     val description: String = context.resources.getString(R.string.alert_failed),
     val titleColor: Int = R.color.error_color,
     val lineColor: Int = R.color.error_color,
-    val timeToDismiss: Long = DEFAULT_TIME_TO_DISMISS
+    val timeToDismiss: Long = DEFAULT_TIME_TO_DISMISS,
+    val gravity: Int = Gravity.BOTTOM,
+    val style: Int = R.style.DialogAnimationsBottomToTop
 ) {
 
     private lateinit var binding: PopupAlerterBinding
@@ -38,12 +40,12 @@ class AlerterPopup(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 false
             )
-            popUpDialog?.animationStyle = R.style.DialogAnimations
+            popUpDialog?.animationStyle = style
             binding.dialog = this
             dismissTimer.start()
             context.window.decorView.findViewById<ViewGroup>(android.R.id.content)?.let {
                 it.post {
-                    popUpDialog?.showAtLocation(it, Gravity.BOTTOM, 0, 0)
+                    popUpDialog?.showAtLocation(it, gravity, 0, 0)
                 }
             }
             setUpListeners()
