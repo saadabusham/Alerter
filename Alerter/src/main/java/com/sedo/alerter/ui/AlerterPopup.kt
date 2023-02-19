@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.CountDownTimer
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.PopupWindow
@@ -19,7 +20,8 @@ class AlerterPopup(
     val lineColor: Int = R.color.error_color,
     val timeToDismiss: Long = DEFAULT_TIME_TO_DISMISS,
     val gravity: Int = Gravity.BOTTOM,
-    val style: Int = R.style.DialogAnimationsBottomToTop
+    val style: Int = R.style.DialogAnimationsBottomToTop,
+    val rootView: View? = null
 ) {
 
     private lateinit var binding: PopupAlerterBinding
@@ -43,9 +45,13 @@ class AlerterPopup(
             popUpDialog?.animationStyle = style
             binding.dialog = this
             dismissTimer.start()
-            context.window.decorView.findViewById<ViewGroup>(android.R.id.content)?.let {
-                it.post {
-                    popUpDialog?.showAtLocation(it, gravity, 0, 0)
+            rootView?.let {
+                popUpDialog?.showAtLocation(it, gravity, 0, 0)
+            } ?: also {
+                context.window.decorView.findViewById<ViewGroup>(android.R.id.content)?.let {
+                    it.post {
+                        popUpDialog?.showAtLocation(it, gravity, 0, 0)
+                    }
                 }
             }
             setUpListeners()

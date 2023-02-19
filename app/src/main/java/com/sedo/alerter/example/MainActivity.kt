@@ -2,6 +2,7 @@ package com.sedo.alerter.example
 
 import android.os.Bundle
 import android.view.Gravity
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.sedo.alerter.utils.extensions.showErrorAlert
@@ -15,7 +16,8 @@ class MainActivity : AppCompatActivity() {
             showErrorAlert(
                 title = "Alert",
                 message = "alert test",
-                gravity = Gravity.TOP
+                gravity = Gravity.TOP,
+                rootView = findViewById<RelativeLayout>(R.id.relativeContainer)
             )
         }
     }
